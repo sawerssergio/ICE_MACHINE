@@ -4,10 +4,20 @@
  * Sobre si 0 o 1. Dado que en programación el primer número es el 0, el paso cero será
  * el primer paso, no os confundais con la numeración, contar 0, 1, 2, 3...
  */
+
+#include <WiFi.h>
+#include <WebServer.h>
+
+const char* ssid = "TU_SSID";  // Tu SSID
+const char* password = "TU_CLAVE";  //Tu Clave
+
+WebServer server(80);
+
 const int numPasos = 3;
 
 int paso;
 int valor;
+int valor1;
 unsigned long tiempos[numPasos] = { 10000, 20000, 30000 }; // El array lo crearemos con tantos pasos como haya.
 unsigned long t; // Esta será nuestra variable de tiempo.
 
@@ -37,11 +47,15 @@ void paso2() {
 
  void lectura(){
   valor = Serial.read();
+  if(valor == 48){
+    Serial.println(valor);
+    delay(500);
+  }
  }
 
- void loop() {
-   // Comprobamos si el temporizador actual ha sobrepasado el tiempo del paso actual.
-   if ( millis() - t > tiempos[paso] ) {
+
+ void pasito(){
+  if ( millis() - t > tiempos[paso] ) {
      t = millis(); // Guardamos el tiempo.
      paso++; // Incrementamos el paso.
      if ( paso==numPasos ) paso = 0; // Cambiamos al primer paso.
@@ -51,5 +65,13 @@ void paso2() {
        case 2: paso2(); break;
        default: break;
      }
+   }
+ }
+
+ void loop() {
+   valor=valor;
+   //lectura();
+   if( valor == 48 ){
+      pasito();
    }
  }
