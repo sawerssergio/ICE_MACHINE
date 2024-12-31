@@ -6,9 +6,8 @@
  */
 const int numPasos = 3;
 
-
-
 int paso;
+int valor;
 unsigned long tiempos[numPasos] = { 10000, 20000, 30000 }; // El array lo crearemos con tantos pasos como haya.
 unsigned long t; // Esta será nuestra variable de tiempo.
 
@@ -34,6 +33,10 @@ void paso2() {
    // Iniciamos la secuencia.
    paso=0;
    paso0();
+ }
+
+ void lectura(){
+  valor = Serial.read();
  }
 
  void loop() {
