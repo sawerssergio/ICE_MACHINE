@@ -6,6 +6,8 @@
  */
 const int numPasos = 3;
 
+
+
 int paso;
 unsigned long tiempos[numPasos] = { 10000, 20000, 30000 }; // El array lo crearemos con tantos pasos como haya.
 unsigned long t; // Esta será nuestra variable de tiempo.
